@@ -1,0 +1,140 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dokumentasi Script SMM Panel Multi API | Jasa SMM</title>
+    <link rel="icon" type="image/x-icon" href="img/favicon/icon.png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700,800,900" rel="stylesheet">
+    <link rel="stylesheet" href="scribbler-global.css">
+    <link rel="stylesheet" href="scribbler-doc.css">
+    <link rel="author" href="Jasaholic">
+  </head>
+  <body>
+    <div class="doc__bg"></div>
+    <nav class="header">
+      <h1 class="logo">Jasa<span class="logo__thin">SMM</span></h1>
+      <ul class="menu">
+        <div class="menu__item toggle"><span></span></div>
+        <li class="menu__item"><a href="https://wa.me/6282221584446" class="link link--dark"><i class="fa fa-whatsapp"></i> Kontak WA</a></li>
+        <li class="menu__item"><a href="index.html" class="link link--dark"><i class="fa fa-home"></i> Home</a></li>
+      </ul>
+    </nav>
+    <div class="wrapper">
+      <aside class="doc__nav">
+        <ul>
+          <li class="js-btn selected">Welcome</li>
+          <li class="js-btn">Configuration</li>
+          
+        </ul>
+      </aside>
+      <article class="doc__content">
+        <section class="js-section">
+          <h3 class="section__title">Selamat Datang</h3>
+          <p>Terimakasih telah membeli script website kami. Kami berharap anda  menjadi salah satu pelopor untuk membeli script pada orang yang tepat dan resmi, sebagai bentuk apresiasi terhadap pengembang website.</p>
+          <h3 class="section__title">Upload File</h3>
+          <p>
+            <li>Login Ke hosting cpanel anda!</li>
+            <li>Buka Main Root dari domain kamu. jika tidak mengunakan banyak domain, sialahkan letakkan pada folder <b>public_html</b></li>
+            <li>Pada menu <b>File Manager</b> Folder <b>public_html</b> Klik Upload.</li>
+            <li>Pilih File Anda, dan klik Upload</li>
+            <li>Setelah selesai upload, silahkan kembali ke main root domain anda</li>
+            <li>Cari file dan extract file</li>
+
+          </p>
+          <h3 class="section__title">Konfigurasi Database</h3>
+          <li>Pastikan anda telah membuat database, jika belum silahkan lihat tutorial</li>
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/ke3Vdlhz5NQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          <li>Rubah Code di folder <b>lib</b>><b>config.php</b></li>
+          <div class="code__block code__block--notabs">
+            <pre class="code code--block">
+              <code>
+                    //Config Database
+                    date_default_timezone_set('Asia/Jakarta');
+                    $db_server = "localhost";
+                    $db_user = ""; //user database
+                    $db_password = "";//password database
+                    $db_name = ""; //nama database
+                    $cfg_baseurl = "https://namadomain.com"; //nama domain tanpa akhiran /
+              </code>
+            </pre>
+          </div>
+          <li>Jangan lupa untuk simpan </li>
+        </section>
+        <section class="js-section">
+          <h3 class="section__title">Konfigurasi Tripay</h3>
+          <p>Berikut untuk konfiguasi pembayaran otomatis tripay
+            <li>Hal pertama, sudah mendaftar akun ditripay</li>
+            
+            <li>1. Klik merchant pada sidebar</li>
+            <img src="img/tripay/1.png" height="500">
+            <li>2.Klik tambah merchant</li>
+            <img src="img/tripay/2.png" width="100%">
+            <li>3.Isi data lengkap</li>
+            <img src="img/tripay/3.png" width="100%">
+          </p>
+          <p>Sesuaikan dengan data berikut:
+            <li>callback : namadomainkamu.com/tripay/callback.php</li>
+            <li>Whitelist IP gunakan share ip hosting kamu. jika menggunakan domainesia, silahkan input <b>IPv4</b> dan <b>IPv6</b> dari dashboard client layanan hosting. Berlaku untuk semua hosting yang menggunakan ip keduanya. jika  hanya IPv4 saja, cukup tambahkan 1 saja</li>
+          </p>
+          <li>Buka folder <b>lib</b> > <b>mainconfig.php</b> dan ganti sesuai dengan merchant kamu</li>
+          <div class="code__block code__block--notabs">
+            <pre class="code code--block">
+              <code>
+                // TRIPAY
+                $tripay_merchant_code = "Kode_merchant";
+                $tripay_private_key = "Private_key";
+                $tripay_api_key = "API_KEY";
+              </code>
+            </pre>
+          </div>
+          <li>Jangan lupa simpan</li>
+        </section>
+        <section class="js-section">
+          <h3 class="section__title">Pengaturan Cron Update status dan refund</h3>
+          <p>
+            Untuk mengatur supaya pesanan kamu dan deposit terupdate, silahkan setting cron website kamu.
+            <li>Login cpanel, dan cari cron</li>
+            <li>Setelah itu buat new cron atau new task</li>
+            <li>centang menjadi **** dan comand tasknya:</li>
+            <div class="code__block code__block--notabs">
+            <pre class="code code--block">
+              <code>
+                * * * * * wget -O - https://yoursite.com/cron/status.php >/dev/null 2>&1
+              </code>
+            </pre>
+          </div>
+          <div class="code__block code__block--notabs">
+            <pre class="code code--block">
+              <code>
+                * * * * * wget -O - https://yoursite.com/cron/refund.php >/dev/null 2>&1
+              </code>
+            </pre>
+          </div>
+
+          </p>
+          <hr />
+        </section>
+        <section class="js-section">
+          <h3 class="section__title">Tambah API Provider</h3>
+          <p>Silahkan login ke akun admin, dan masuk halaman admin. Pilih menu <b>Api Layanan</b> pada sidebar, dan klik tambah sesuai kebutuhan anda!
+
+        </p>
+        </section>
+        <section class="js-section">
+          <h3 class="section__title">Update Layanan</h3>
+          <p>Silahkan login ke akun admin, dan masuk halaman admin. Pilih menu <b>Layanan Sosmed</b>><b>Update Sosmed</b> pada sidebar!
+
+        </p>
+        </section>
+      </article>
+    </div>
+
+    <footer class="footer">Jasa SMM</footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="scribbler.js"></script>
+  </body>
+</html>
